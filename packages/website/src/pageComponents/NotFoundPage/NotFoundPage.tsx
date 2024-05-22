@@ -1,5 +1,3 @@
-'use client';
-
 import { Result } from 'antd';
 
 import Layout from '@/components/Layout';

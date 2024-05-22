@@ -1,5 +1,3 @@
-'use client';
-
 import Layout from '@/components/Layout';
 import Spinner from '@/components/Spinner';
 

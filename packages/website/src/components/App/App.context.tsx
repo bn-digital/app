@@ -2,34 +2,35 @@
 
 import {
   createContext,
-  ReactElement,
   useContext,
-  useMemo,
+  ReactElement,
 } from 'react';
 
 import { IUseResponsive, useResponsive } from '@/hooks/useResponsive';
 
-import { version } from '@/../package.json';
+import type { UserAgent } from '@/utils/userAgent';
 
 type AppContextValue = IUseResponsive & {
-  version: string
+  userAgent: UserAgent
 };
 
 type AppProviderProps = {
   children: ReactElement | ReactElement[]
+  userAgent: AppContextValue['userAgent']
 };
 
 export const AppContext = createContext({} as AppContextValue);
 
 export function AppProvider({
   children,
+  userAgent,
 }: AppProviderProps) {
-  const responsive = useResponsive();
+  const responsive = useResponsive({ userAgent });
 
-  const context: AppContextValue = useMemo(() => ({
-    version,
+  const context: AppContextValue = {
+    userAgent,
     ...responsive,
-  }), [responsive]);
+  }
 
   return (
     <AppContext.Provider value={context}>

@@ -6,9 +6,8 @@
  * Instead, use the result of this hook from AppContext
  */
 
-import { useEffect, useState } from 'react';
-import { isMobileOnly, isTablet, isDesktop } from 'react-device-detect';
 import { useMediaQuery } from 'react-responsive';
+import type { UserAgent } from '@/utils/userAgent';
 
 export const breakpoints = {
   XS: 480,
@@ -20,58 +19,48 @@ export const breakpoints = {
 
 export type Breakpoints = typeof breakpoints;
 
-type DeviceType = 'mobile' | 'desktop' | 'XL' | 'MD' | 'SM' | 'LG' | 'XS';
+type DeviceType = 'mobile' | 'desktop' | 'tablet' | 'XL' | 'MD' | 'SM' | 'LG' | 'XS';
 
 export type IUseResponsive = (
-    { [key in `is${Capitalize<DeviceType>}`]: boolean } & {
-      breakpoints: Breakpoints
-    }
+  Record<`is${Capitalize<DeviceType>}`, boolean> & {
+    breakpoints: Breakpoints
+  }
 );
 
-export function useResponsive(): IUseResponsive {
-  const [isXS, setIsXS] = useState(isMobileOnly);
+export type UseResponsiveArgs = {
+  userAgent: UserAgent
+};
+
+export function useResponsive({
+  userAgent
+}: UseResponsiveArgs): IUseResponsive {
   const mediaXS = useMediaQuery({ minWidth: breakpoints.XS });
-
-  const [isSM, setIsSM] = useState(isMobileOnly);
   const mediaSM = useMediaQuery({ minWidth: breakpoints.SM });
-
-  const [isMD, setIsMD] = useState(isTablet);
   const mediaMD = useMediaQuery({ minWidth: breakpoints.MD });
-
-  const [isLG, setIsLG] = useState(isDesktop);
   const mediaLG = useMediaQuery({ minWidth: breakpoints.LG });
-
-  const [isXL, setIsXL] = useState(isDesktop);
   const mediaXL = useMediaQuery({ minWidth: breakpoints.XL });
 
-  useEffect(() => {
-    setIsXS(mediaXS);
-  }, [mediaXS]);
+  const isServer = typeof window === 'undefined';
 
-  useEffect(() => {
-    setIsSM(mediaSM);
-  }, [mediaSM]);
+  const isXS = isServer ? userAgent.isMobile : mediaXS;
+  const isSM = isServer ? userAgent.isTablet : mediaSM;
+  const isMD = isServer ? userAgent.isTablet : mediaMD;
+  const isLG = isServer ? userAgent.isDesktop : mediaLG;
+  const isXL = isServer ? userAgent.isDesktop : mediaXL;
 
-  useEffect(() => {
-    setIsMD(mediaMD);
-  }, [mediaMD]);
-
-  useEffect(() => {
-    setIsLG(mediaLG);
-  }, [mediaLG]);
-
-  useEffect(() => {
-    setIsXL(mediaXL);
-  }, [mediaXL]);
+  const isMobile = isServer ? userAgent.isMobile : !isSM;
+  const isDesktop = isServer ? userAgent.isDesktop : isLG;
+  const isTablet = isServer ? userAgent.isTablet : !isMobile && !isDesktop;
 
   return {
+    isMobile,
+    isDesktop,
+    isTablet,
     isXS,
     isSM,
     isMD,
     isXL,
     isLG,
     breakpoints,
-    isMobile: !isSM,
-    isDesktop: isLG,
   };
 }

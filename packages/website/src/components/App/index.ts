@@ -7,7 +7,6 @@ import type {
 } from './ConfigProvider';
 import type { EmotionProviderProps, Presets } from './EmotionProvider';
 import type { ErrorBoundaryProps } from './ErrorBoundary';
-import type { StyleProvideProps } from './StyleProvider';
 
 export type {
   AppProps,
@@ -17,7 +16,6 @@ export type {
   ErrorBoundaryProps,
   AppThemeToken,
   ThemeConfig,
-  StyleProvideProps,
   ApolloProviderProps,
 };
 

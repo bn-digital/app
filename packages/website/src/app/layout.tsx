@@ -4,6 +4,7 @@ import { ReactElement } from 'react';
 import App from '@/components/App';
 import { lato } from '@/fonts/lato';
 import seo from '@/utils/seo';
+import { getByHeader } from "@/utils/userAgent"
 
 export const metadata: Metadata = {
   alternates: {
@@ -36,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={lato.className}>
-        <App>
+        <App userAgent={getByHeader()}>
           {children}
         </App>
       </body>
