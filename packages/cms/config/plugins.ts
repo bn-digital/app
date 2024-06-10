@@ -1,10 +1,10 @@
-import { join } from "path"
+import { join } from "path";
 
-import app, { randomSecret } from "../src/hooks"
+import app, { randomSecret } from "../src/hooks";
 
 export default ({ env }: Strapi.Env): Config.Plugin => {
   return {
-    "graphql": {
+    graphql: {
       enabled: true,
       config: {
         endpoint: "/graphql",
@@ -33,12 +33,13 @@ export default ({ env }: Strapi.Env): Config.Plugin => {
         jwtSecret: env("JWT_SECRET", randomSecret("JWT_SECRET")),
       },
     },
-    "upload": {
+    upload: {
       enabled: env("S3_ACCESS_KEY_ID") && env("S3_SECRET_ACCESS_KEY"),
       config: {
         provider: "aws-s3",
         providerOptions: {
           s3Options: {
+            //TODO remove warning
             accessKeyId: env("S3_ACCESS_KEY_ID"),
             secretAccessKey: env("S3_SECRET_ACCESS_KEY"),
             endpoint: env("S3_ENDPOINT"),
@@ -49,7 +50,7 @@ export default ({ env }: Strapi.Env): Config.Plugin => {
         },
       },
     },
-    "email": {
+    email: {
       enabled: env("SMTP_USERNAME") && env("SMTP_PASSWORD"),
       config: {
         provider: "nodemailer",
@@ -67,5 +68,5 @@ export default ({ env }: Strapi.Env): Config.Plugin => {
         },
       },
     },
-  }
-}
+  };
+};

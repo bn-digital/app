@@ -1,0 +1,8 @@
+node_modules/*
+.next/*
+build/*
+.eslintrc.js
+next.config.js
+next-env.d.ts
+src/types/*
+src/graphql/*

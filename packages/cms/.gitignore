@@ -1,5 +1,8 @@
 build
 dist
 .cache
+.strapi
 /.strapi-updater.json*
 /src/graphql/schema.graphql
+/types/generated*
+# *.sqlite

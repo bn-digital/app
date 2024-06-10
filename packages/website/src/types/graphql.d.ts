@@ -1,1421 +1,1168 @@
-type Maybe<T> = T | null | undefined
-type InputMaybe<T> = T | null | undefined
-type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
-type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> }
-type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> }
-type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never }
-type Incremental<T> = T | { [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never }
+type Maybe<T> = T | null | undefined;
+type InputMaybe<T> = T | null | undefined;
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 type Scalars = {
-  ID: string
-  String: string
-  Boolean: boolean
-  Int: number
-  Float: number
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
   /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-  Date: string
+  Date: { input: string; output: string; }
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-  DateTime: Date
+  DateTime: { input: Date; output: Date; }
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  JSON: Record<string, any | any[] | string | number | boolean | null | undefined> | any[]
+  JSON: { input: Record<string, any|any[]|string|number|boolean|null|undefined>|any[]; output: Record<string, any|any[]|string|number|boolean|null|undefined>|any[]; }
   /** The `BigInt` scalar type represents non-fractional signed whole numeric values. */
-  Long: number
+  Long: { input: number; output: number; }
   /** A time string with format HH:mm:ss.SSS */
-  Time: string
+  Time: { input: string; output: string; }
   /** The `Upload` scalar type represents a file upload. */
-  Upload: unknown
-}
+  Upload: { input: unknown; output: unknown; }
+};
 
 type BooleanFilterInput = {
-  and?: InputMaybe<Array<InputMaybe<Scalars["Boolean"]>>>
-  between?: InputMaybe<Array<InputMaybe<Scalars["Boolean"]>>>
-  contains?: InputMaybe<Scalars["Boolean"]>
-  containsi?: InputMaybe<Scalars["Boolean"]>
-  endsWith?: InputMaybe<Scalars["Boolean"]>
-  eq?: InputMaybe<Scalars["Boolean"]>
-  eqi?: InputMaybe<Scalars["Boolean"]>
-  gt?: InputMaybe<Scalars["Boolean"]>
-  gte?: InputMaybe<Scalars["Boolean"]>
-  in?: InputMaybe<Array<InputMaybe<Scalars["Boolean"]>>>
-  lt?: InputMaybe<Scalars["Boolean"]>
-  lte?: InputMaybe<Scalars["Boolean"]>
-  ne?: InputMaybe<Scalars["Boolean"]>
-  not?: InputMaybe<BooleanFilterInput>
-  notContains?: InputMaybe<Scalars["Boolean"]>
-  notContainsi?: InputMaybe<Scalars["Boolean"]>
-  notIn?: InputMaybe<Array<InputMaybe<Scalars["Boolean"]>>>
-  notNull?: InputMaybe<Scalars["Boolean"]>
-  null?: InputMaybe<Scalars["Boolean"]>
-  or?: InputMaybe<Array<InputMaybe<Scalars["Boolean"]>>>
-  startsWith?: InputMaybe<Scalars["Boolean"]>
-}
+  and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
+  contains?: InputMaybe<Scalars['Boolean']['input']>;
+  containsi?: InputMaybe<Scalars['Boolean']['input']>;
+  endsWith?: InputMaybe<Scalars['Boolean']['input']>;
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  eqi?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['Boolean']['input']>;
+  gte?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
+  lt?: InputMaybe<Scalars['Boolean']['input']>;
+  lte?: InputMaybe<Scalars['Boolean']['input']>;
+  ne?: InputMaybe<Scalars['Boolean']['input']>;
+  nei?: InputMaybe<Scalars['Boolean']['input']>;
+  not?: InputMaybe<BooleanFilterInput>;
+  notContains?: InputMaybe<Scalars['Boolean']['input']>;
+  notContainsi?: InputMaybe<Scalars['Boolean']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
+  startsWith?: InputMaybe<Scalars['Boolean']['input']>;
+};
 
 type ComponentDataEntry = {
-  id: Scalars["ID"]
-  key?: Maybe<Scalars["String"]>
-  value: Scalars["String"]
-}
+  id: Scalars['ID']['output'];
+  key?: Maybe<Scalars['String']['output']>;
+  value: Scalars['String']['output'];
+};
 
 type ComponentDataEntryFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentDataEntryFiltersInput>>>
-  key?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<ComponentDataEntryFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentDataEntryFiltersInput>>>
-  value?: InputMaybe<StringFilterInput>
-}
+  and?: InputMaybe<Array<InputMaybe<ComponentDataEntryFiltersInput>>>;
+  key?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentDataEntryFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentDataEntryFiltersInput>>>;
+  value?: InputMaybe<StringFilterInput>;
+};
 
 type ComponentDataEntryInput = {
-  id?: InputMaybe<Scalars["ID"]>
-  key?: InputMaybe<Scalars["String"]>
-  value?: InputMaybe<Scalars["String"]>
-}
+  id?: InputMaybe<Scalars['ID']['input']>;
+  key?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+};
 
 type ComponentDataSet = {
-  id: Scalars["ID"]
-  value: Scalars["String"]
-}
+  id: Scalars['ID']['output'];
+  value: Scalars['String']['output'];
+};
 
 type ComponentDataSetFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentDataSetFiltersInput>>>
-  not?: InputMaybe<ComponentDataSetFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentDataSetFiltersInput>>>
-  value?: InputMaybe<StringFilterInput>
-}
+  and?: InputMaybe<Array<InputMaybe<ComponentDataSetFiltersInput>>>;
+  not?: InputMaybe<ComponentDataSetFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentDataSetFiltersInput>>>;
+  value?: InputMaybe<StringFilterInput>;
+};
 
 type ComponentDataSetInput = {
-  id?: InputMaybe<Scalars["ID"]>
-  value?: InputMaybe<Scalars["String"]>
-}
+  id?: InputMaybe<Scalars['ID']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+};
 
-type ComponentUiCard = {
-  description?: Maybe<Scalars["String"]>
-  id: Scalars["ID"]
-  media?: Maybe<UploadFileEntityResponse>
-  subtitle?: Maybe<Scalars["String"]>
-  title?: Maybe<Scalars["String"]>
-}
+type ContentReleasesRelease = {
+  actions?: Maybe<ContentReleasesReleaseActionRelationResponseCollection>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  name: Scalars['String']['output'];
+  releasedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
 
-type ComponentUiCardFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentUiCardFiltersInput>>>
-  description?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<ComponentUiCardFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentUiCardFiltersInput>>>
-  subtitle?: InputMaybe<StringFilterInput>
-  title?: InputMaybe<StringFilterInput>
-}
 
-type ComponentUiCardInput = {
-  description?: InputMaybe<Scalars["String"]>
-  id?: InputMaybe<Scalars["ID"]>
-  media?: InputMaybe<Scalars["ID"]>
-  subtitle?: InputMaybe<Scalars["String"]>
-  title?: InputMaybe<Scalars["String"]>
-}
+type ContentReleasesReleaseActionsArgs = {
+  filters?: InputMaybe<ContentReleasesReleaseActionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
 
-type ComponentUiGrid = {
-  children: Array<Maybe<ComponentDataEntry>>
-  id: Scalars["ID"]
-  visible: Scalars["Boolean"]
-}
+type ContentReleasesReleaseAction = {
+  contentType: Scalars['String']['output'];
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  entry?: Maybe<GenericMorph>;
+  release?: Maybe<ContentReleasesReleaseEntityResponse>;
+  type: EnumContentreleasesreleaseactionType;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
 
-type ComponentUiGridChildrenArgs = {
-  filters?: InputMaybe<ComponentDataEntryFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>>
-}
+type ContentReleasesReleaseActionEntity = {
+  attributes?: Maybe<ContentReleasesReleaseAction>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
 
-type ComponentUiGridFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentUiGridFiltersInput>>>
-  children?: InputMaybe<ComponentDataEntryFiltersInput>
-  not?: InputMaybe<ComponentUiGridFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentUiGridFiltersInput>>>
-  visible?: InputMaybe<BooleanFilterInput>
-}
+type ContentReleasesReleaseActionEntityResponse = {
+  data?: Maybe<ContentReleasesReleaseActionEntity>;
+};
 
-type ComponentUiGridInput = {
-  children?: InputMaybe<Array<InputMaybe<ComponentDataEntryInput>>>
-  id?: InputMaybe<Scalars["ID"]>
-  visible?: InputMaybe<Scalars["Boolean"]>
-}
+type ContentReleasesReleaseActionEntityResponseCollection = {
+  data: Array<ContentReleasesReleaseActionEntity>;
+  meta: ResponseCollectionMeta;
+};
 
-type ComponentUiHeadline = {
-  id: Scalars["ID"]
-  subtitle?: Maybe<Scalars["String"]>
-  title?: Maybe<Scalars["String"]>
-}
+type ContentReleasesReleaseActionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ContentReleasesReleaseActionFiltersInput>>>;
+  contentType?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<ContentReleasesReleaseActionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ContentReleasesReleaseActionFiltersInput>>>;
+  release?: InputMaybe<ContentReleasesReleaseFiltersInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
 
-type ComponentUiHeadlineFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentUiHeadlineFiltersInput>>>
-  not?: InputMaybe<ComponentUiHeadlineFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentUiHeadlineFiltersInput>>>
-  subtitle?: InputMaybe<StringFilterInput>
-  title?: InputMaybe<StringFilterInput>
-}
+type ContentReleasesReleaseActionInput = {
+  contentType?: InputMaybe<Scalars['String']['input']>;
+  release?: InputMaybe<Scalars['ID']['input']>;
+  type?: InputMaybe<EnumContentreleasesreleaseactionType>;
+};
 
-type ComponentUiHeadlineInput = {
-  id?: InputMaybe<Scalars["ID"]>
-  subtitle?: InputMaybe<Scalars["String"]>
-  title?: InputMaybe<Scalars["String"]>
-}
+type ContentReleasesReleaseActionRelationResponseCollection = {
+  data: Array<ContentReleasesReleaseActionEntity>;
+};
 
-type ComponentUiLink = {
-  icon?: Maybe<Scalars["String"]>
-  id: Scalars["ID"]
-  target: EnumComponentuilinkTarget
-  title?: Maybe<Scalars["String"]>
-  url: Scalars["String"]
-}
+type ContentReleasesReleaseEntity = {
+  attributes?: Maybe<ContentReleasesRelease>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
 
-type ComponentUiLinkFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentUiLinkFiltersInput>>>
-  icon?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<ComponentUiLinkFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentUiLinkFiltersInput>>>
-  target?: InputMaybe<StringFilterInput>
-  title?: InputMaybe<StringFilterInput>
-  url?: InputMaybe<StringFilterInput>
-}
+type ContentReleasesReleaseEntityResponse = {
+  data?: Maybe<ContentReleasesReleaseEntity>;
+};
 
-type ComponentUiLinkInput = {
-  icon?: InputMaybe<Scalars["String"]>
-  id?: InputMaybe<Scalars["ID"]>
-  target?: InputMaybe<EnumComponentuilinkTarget>
-  title?: InputMaybe<Scalars["String"]>
-  url?: InputMaybe<Scalars["String"]>
-}
+type ContentReleasesReleaseEntityResponseCollection = {
+  data: Array<ContentReleasesReleaseEntity>;
+  meta: ResponseCollectionMeta;
+};
 
-type ComponentUiParagraph = {
-  id: Scalars["ID"]
-  value: Scalars["String"]
-}
+type ContentReleasesReleaseFiltersInput = {
+  actions?: InputMaybe<ContentReleasesReleaseActionFiltersInput>;
+  and?: InputMaybe<Array<InputMaybe<ContentReleasesReleaseFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ContentReleasesReleaseFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ContentReleasesReleaseFiltersInput>>>;
+  releasedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
 
-type ComponentUiParagraphFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentUiParagraphFiltersInput>>>
-  not?: InputMaybe<ComponentUiParagraphFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentUiParagraphFiltersInput>>>
-  value?: InputMaybe<StringFilterInput>
-}
+type ContentReleasesReleaseInput = {
+  actions?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  releasedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
 
-type ComponentUiParagraphInput = {
-  id?: InputMaybe<Scalars["ID"]>
-  value?: InputMaybe<Scalars["String"]>
-}
-
-type ComponentUiSection = {
-  button?: Maybe<ComponentUiLink>
-  heading?: Maybe<ComponentUiCard>
-  id: Scalars["ID"]
-  visible: Scalars["Boolean"]
-}
-
-type ComponentUiSectionFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentUiSectionFiltersInput>>>
-  button?: InputMaybe<ComponentUiLinkFiltersInput>
-  heading?: InputMaybe<ComponentUiCardFiltersInput>
-  not?: InputMaybe<ComponentUiSectionFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentUiSectionFiltersInput>>>
-  visible?: InputMaybe<BooleanFilterInput>
-}
-
-type ComponentUiSectionInput = {
-  button?: InputMaybe<ComponentUiLinkInput>
-  heading?: InputMaybe<ComponentUiCardInput>
-  id?: InputMaybe<Scalars["ID"]>
-  visible?: InputMaybe<Scalars["Boolean"]>
-}
-
-type ComponentUiTab = {
-  id: Scalars["ID"]
-  name: Scalars["String"]
-  pane: ComponentUiCard
-}
-
-type ComponentUiTabFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentUiTabFiltersInput>>>
-  name?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<ComponentUiTabFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentUiTabFiltersInput>>>
-  pane?: InputMaybe<ComponentUiCardFiltersInput>
-}
-
-type ComponentUiTabInput = {
-  id?: InputMaybe<Scalars["ID"]>
-  name?: InputMaybe<Scalars["String"]>
-  pane?: InputMaybe<ComponentUiCardInput>
-}
-
-type ComponentUiText = {
-  children: Array<Maybe<ComponentUiParagraph>>
-  id: Scalars["ID"]
-  visible: Scalars["Boolean"]
-}
-
-type ComponentUiTextChildrenArgs = {
-  filters?: InputMaybe<ComponentUiParagraphFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>>
-}
-
-type ComponentUiTextFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentUiTextFiltersInput>>>
-  children?: InputMaybe<ComponentUiParagraphFiltersInput>
-  not?: InputMaybe<ComponentUiTextFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentUiTextFiltersInput>>>
-  visible?: InputMaybe<BooleanFilterInput>
-}
-
-type ComponentUiTextInput = {
-  children?: InputMaybe<Array<InputMaybe<ComponentUiParagraphInput>>>
-  id?: InputMaybe<Scalars["ID"]>
-  visible?: InputMaybe<Scalars["Boolean"]>
-}
+type ContentReleasesReleaseRelationResponseCollection = {
+  data: Array<ContentReleasesReleaseEntity>;
+};
 
 type DateFilterInput = {
-  and?: InputMaybe<Array<InputMaybe<Scalars["Date"]>>>
-  between?: InputMaybe<Array<InputMaybe<Scalars["Date"]>>>
-  contains?: InputMaybe<Scalars["Date"]>
-  containsi?: InputMaybe<Scalars["Date"]>
-  endsWith?: InputMaybe<Scalars["Date"]>
-  eq?: InputMaybe<Scalars["Date"]>
-  eqi?: InputMaybe<Scalars["Date"]>
-  gt?: InputMaybe<Scalars["Date"]>
-  gte?: InputMaybe<Scalars["Date"]>
-  in?: InputMaybe<Array<InputMaybe<Scalars["Date"]>>>
-  lt?: InputMaybe<Scalars["Date"]>
-  lte?: InputMaybe<Scalars["Date"]>
-  ne?: InputMaybe<Scalars["Date"]>
-  not?: InputMaybe<DateFilterInput>
-  notContains?: InputMaybe<Scalars["Date"]>
-  notContainsi?: InputMaybe<Scalars["Date"]>
-  notIn?: InputMaybe<Array<InputMaybe<Scalars["Date"]>>>
-  notNull?: InputMaybe<Scalars["Boolean"]>
-  null?: InputMaybe<Scalars["Boolean"]>
-  or?: InputMaybe<Array<InputMaybe<Scalars["Date"]>>>
-  startsWith?: InputMaybe<Scalars["Date"]>
-}
+  and?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  contains?: InputMaybe<Scalars['Date']['input']>;
+  containsi?: InputMaybe<Scalars['Date']['input']>;
+  endsWith?: InputMaybe<Scalars['Date']['input']>;
+  eq?: InputMaybe<Scalars['Date']['input']>;
+  eqi?: InputMaybe<Scalars['Date']['input']>;
+  gt?: InputMaybe<Scalars['Date']['input']>;
+  gte?: InputMaybe<Scalars['Date']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  lt?: InputMaybe<Scalars['Date']['input']>;
+  lte?: InputMaybe<Scalars['Date']['input']>;
+  ne?: InputMaybe<Scalars['Date']['input']>;
+  nei?: InputMaybe<Scalars['Date']['input']>;
+  not?: InputMaybe<DateFilterInput>;
+  notContains?: InputMaybe<Scalars['Date']['input']>;
+  notContainsi?: InputMaybe<Scalars['Date']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  startsWith?: InputMaybe<Scalars['Date']['input']>;
+};
 
 type DateTimeFilterInput = {
-  and?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]>>>
-  between?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]>>>
-  contains?: InputMaybe<Scalars["DateTime"]>
-  containsi?: InputMaybe<Scalars["DateTime"]>
-  endsWith?: InputMaybe<Scalars["DateTime"]>
-  eq?: InputMaybe<Scalars["DateTime"]>
-  eqi?: InputMaybe<Scalars["DateTime"]>
-  gt?: InputMaybe<Scalars["DateTime"]>
-  gte?: InputMaybe<Scalars["DateTime"]>
-  in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]>>>
-  lt?: InputMaybe<Scalars["DateTime"]>
-  lte?: InputMaybe<Scalars["DateTime"]>
-  ne?: InputMaybe<Scalars["DateTime"]>
-  not?: InputMaybe<DateTimeFilterInput>
-  notContains?: InputMaybe<Scalars["DateTime"]>
-  notContainsi?: InputMaybe<Scalars["DateTime"]>
-  notIn?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]>>>
-  notNull?: InputMaybe<Scalars["Boolean"]>
-  null?: InputMaybe<Scalars["Boolean"]>
-  or?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]>>>
-  startsWith?: InputMaybe<Scalars["DateTime"]>
-}
+  and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  contains?: InputMaybe<Scalars['DateTime']['input']>;
+  containsi?: InputMaybe<Scalars['DateTime']['input']>;
+  endsWith?: InputMaybe<Scalars['DateTime']['input']>;
+  eq?: InputMaybe<Scalars['DateTime']['input']>;
+  eqi?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  ne?: InputMaybe<Scalars['DateTime']['input']>;
+  nei?: InputMaybe<Scalars['DateTime']['input']>;
+  not?: InputMaybe<DateTimeFilterInput>;
+  notContains?: InputMaybe<Scalars['DateTime']['input']>;
+  notContainsi?: InputMaybe<Scalars['DateTime']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  startsWith?: InputMaybe<Scalars['DateTime']['input']>;
+};
 
-type EnumComponentuilinkTarget = "blank" | "parent" | "self" | "top"
+type EnumContentreleasesreleaseactionType =
+  | 'publish'
+  | 'unpublish';
 
 type Error = {
-  code: Scalars["String"]
-  message?: Maybe<Scalars["String"]>
-}
+  code: Scalars['String']['output'];
+  message?: Maybe<Scalars['String']['output']>;
+};
 
 type FileInfoInput = {
-  alternativeText?: InputMaybe<Scalars["String"]>
-  caption?: InputMaybe<Scalars["String"]>
-  name?: InputMaybe<Scalars["String"]>
-}
+  alternativeText?: InputMaybe<Scalars['String']['input']>;
+  caption?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
 
 type FloatFilterInput = {
-  and?: InputMaybe<Array<InputMaybe<Scalars["Float"]>>>
-  between?: InputMaybe<Array<InputMaybe<Scalars["Float"]>>>
-  contains?: InputMaybe<Scalars["Float"]>
-  containsi?: InputMaybe<Scalars["Float"]>
-  endsWith?: InputMaybe<Scalars["Float"]>
-  eq?: InputMaybe<Scalars["Float"]>
-  eqi?: InputMaybe<Scalars["Float"]>
-  gt?: InputMaybe<Scalars["Float"]>
-  gte?: InputMaybe<Scalars["Float"]>
-  in?: InputMaybe<Array<InputMaybe<Scalars["Float"]>>>
-  lt?: InputMaybe<Scalars["Float"]>
-  lte?: InputMaybe<Scalars["Float"]>
-  ne?: InputMaybe<Scalars["Float"]>
-  not?: InputMaybe<FloatFilterInput>
-  notContains?: InputMaybe<Scalars["Float"]>
-  notContainsi?: InputMaybe<Scalars["Float"]>
-  notIn?: InputMaybe<Array<InputMaybe<Scalars["Float"]>>>
-  notNull?: InputMaybe<Scalars["Boolean"]>
-  null?: InputMaybe<Scalars["Boolean"]>
-  or?: InputMaybe<Array<InputMaybe<Scalars["Float"]>>>
-  startsWith?: InputMaybe<Scalars["Float"]>
-}
+  and?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  contains?: InputMaybe<Scalars['Float']['input']>;
+  containsi?: InputMaybe<Scalars['Float']['input']>;
+  endsWith?: InputMaybe<Scalars['Float']['input']>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  eqi?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  ne?: InputMaybe<Scalars['Float']['input']>;
+  nei?: InputMaybe<Scalars['Float']['input']>;
+  not?: InputMaybe<FloatFilterInput>;
+  notContains?: InputMaybe<Scalars['Float']['input']>;
+  notContainsi?: InputMaybe<Scalars['Float']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  startsWith?: InputMaybe<Scalars['Float']['input']>;
+};
 
-type GenericMorph =
-  | ComponentDataEntry
-  | ComponentDataSet
-  | ComponentUiCard
-  | ComponentUiGrid
-  | ComponentUiHeadline
-  | ComponentUiLink
-  | ComponentUiParagraph
-  | ComponentUiSection
-  | ComponentUiTab
-  | ComponentUiText
-  | Home
-  | Layout
-  | ReactIconsIconlibrary
-  | UploadFile
-  | UploadFolder
-  | UsersPermissionsPermission
-  | UsersPermissionsRole
-  | UsersPermissionsUser
-
-type Home = {
-  createdAt?: Maybe<Scalars["DateTime"]>
-  hero?: Maybe<ComponentUiSection>
-  key?: Maybe<Scalars["String"]>
-  updatedAt?: Maybe<Scalars["DateTime"]>
-}
-
-type HomeEntity = {
-  attributes?: Maybe<Home>
-  id?: Maybe<Scalars["ID"]>
-}
-
-type HomeEntityResponse = {
-  data?: Maybe<HomeEntity>
-}
-
-type HomeEntityResponseCollection = {
-  data: Array<HomeEntity>
-  meta: ResponseCollectionMeta
-}
-
-type HomeFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<HomeFiltersInput>>>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  hero?: InputMaybe<ComponentUiSectionFiltersInput>
-  key?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<HomeFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<HomeFiltersInput>>>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-}
-
-type HomeInput = {
-  hero?: InputMaybe<ComponentUiSectionInput>
-  key?: InputMaybe<Scalars["String"]>
-}
-
-type HomeRelationResponseCollection = {
-  data: Array<HomeEntity>
-}
+type GenericMorph = ComponentDataEntry | ComponentDataSet | ContentReleasesRelease | ContentReleasesReleaseAction | StaticPage | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 type IdFilterInput = {
-  and?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>
-  between?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>
-  contains?: InputMaybe<Scalars["ID"]>
-  containsi?: InputMaybe<Scalars["ID"]>
-  endsWith?: InputMaybe<Scalars["ID"]>
-  eq?: InputMaybe<Scalars["ID"]>
-  eqi?: InputMaybe<Scalars["ID"]>
-  gt?: InputMaybe<Scalars["ID"]>
-  gte?: InputMaybe<Scalars["ID"]>
-  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>
-  lt?: InputMaybe<Scalars["ID"]>
-  lte?: InputMaybe<Scalars["ID"]>
-  ne?: InputMaybe<Scalars["ID"]>
-  not?: InputMaybe<IdFilterInput>
-  notContains?: InputMaybe<Scalars["ID"]>
-  notContainsi?: InputMaybe<Scalars["ID"]>
-  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>
-  notNull?: InputMaybe<Scalars["Boolean"]>
-  null?: InputMaybe<Scalars["Boolean"]>
-  or?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>
-  startsWith?: InputMaybe<Scalars["ID"]>
-}
+  and?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  contains?: InputMaybe<Scalars['ID']['input']>;
+  containsi?: InputMaybe<Scalars['ID']['input']>;
+  endsWith?: InputMaybe<Scalars['ID']['input']>;
+  eq?: InputMaybe<Scalars['ID']['input']>;
+  eqi?: InputMaybe<Scalars['ID']['input']>;
+  gt?: InputMaybe<Scalars['ID']['input']>;
+  gte?: InputMaybe<Scalars['ID']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  lt?: InputMaybe<Scalars['ID']['input']>;
+  lte?: InputMaybe<Scalars['ID']['input']>;
+  ne?: InputMaybe<Scalars['ID']['input']>;
+  nei?: InputMaybe<Scalars['ID']['input']>;
+  not?: InputMaybe<IdFilterInput>;
+  notContains?: InputMaybe<Scalars['ID']['input']>;
+  notContainsi?: InputMaybe<Scalars['ID']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  startsWith?: InputMaybe<Scalars['ID']['input']>;
+};
 
 type IntFilterInput = {
-  and?: InputMaybe<Array<InputMaybe<Scalars["Int"]>>>
-  between?: InputMaybe<Array<InputMaybe<Scalars["Int"]>>>
-  contains?: InputMaybe<Scalars["Int"]>
-  containsi?: InputMaybe<Scalars["Int"]>
-  endsWith?: InputMaybe<Scalars["Int"]>
-  eq?: InputMaybe<Scalars["Int"]>
-  eqi?: InputMaybe<Scalars["Int"]>
-  gt?: InputMaybe<Scalars["Int"]>
-  gte?: InputMaybe<Scalars["Int"]>
-  in?: InputMaybe<Array<InputMaybe<Scalars["Int"]>>>
-  lt?: InputMaybe<Scalars["Int"]>
-  lte?: InputMaybe<Scalars["Int"]>
-  ne?: InputMaybe<Scalars["Int"]>
-  not?: InputMaybe<IntFilterInput>
-  notContains?: InputMaybe<Scalars["Int"]>
-  notContainsi?: InputMaybe<Scalars["Int"]>
-  notIn?: InputMaybe<Array<InputMaybe<Scalars["Int"]>>>
-  notNull?: InputMaybe<Scalars["Boolean"]>
-  null?: InputMaybe<Scalars["Boolean"]>
-  or?: InputMaybe<Array<InputMaybe<Scalars["Int"]>>>
-  startsWith?: InputMaybe<Scalars["Int"]>
-}
+  and?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  contains?: InputMaybe<Scalars['Int']['input']>;
+  containsi?: InputMaybe<Scalars['Int']['input']>;
+  endsWith?: InputMaybe<Scalars['Int']['input']>;
+  eq?: InputMaybe<Scalars['Int']['input']>;
+  eqi?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  ne?: InputMaybe<Scalars['Int']['input']>;
+  nei?: InputMaybe<Scalars['Int']['input']>;
+  not?: InputMaybe<IntFilterInput>;
+  notContains?: InputMaybe<Scalars['Int']['input']>;
+  notContainsi?: InputMaybe<Scalars['Int']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  startsWith?: InputMaybe<Scalars['Int']['input']>;
+};
 
 type JsonFilterInput = {
-  and?: InputMaybe<Array<InputMaybe<Scalars["JSON"]>>>
-  between?: InputMaybe<Array<InputMaybe<Scalars["JSON"]>>>
-  contains?: InputMaybe<Scalars["JSON"]>
-  containsi?: InputMaybe<Scalars["JSON"]>
-  endsWith?: InputMaybe<Scalars["JSON"]>
-  eq?: InputMaybe<Scalars["JSON"]>
-  eqi?: InputMaybe<Scalars["JSON"]>
-  gt?: InputMaybe<Scalars["JSON"]>
-  gte?: InputMaybe<Scalars["JSON"]>
-  in?: InputMaybe<Array<InputMaybe<Scalars["JSON"]>>>
-  lt?: InputMaybe<Scalars["JSON"]>
-  lte?: InputMaybe<Scalars["JSON"]>
-  ne?: InputMaybe<Scalars["JSON"]>
-  not?: InputMaybe<JsonFilterInput>
-  notContains?: InputMaybe<Scalars["JSON"]>
-  notContainsi?: InputMaybe<Scalars["JSON"]>
-  notIn?: InputMaybe<Array<InputMaybe<Scalars["JSON"]>>>
-  notNull?: InputMaybe<Scalars["Boolean"]>
-  null?: InputMaybe<Scalars["Boolean"]>
-  or?: InputMaybe<Array<InputMaybe<Scalars["JSON"]>>>
-  startsWith?: InputMaybe<Scalars["JSON"]>
-}
-
-type Layout = {
-  createdAt?: Maybe<Scalars["DateTime"]>
-  headerMenu?: Maybe<Array<Maybe<ComponentUiLink>>>
-  updatedAt?: Maybe<Scalars["DateTime"]>
-}
-
-type LayoutHeaderMenuArgs = {
-  filters?: InputMaybe<ComponentUiLinkFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>>
-}
-
-type LayoutEntity = {
-  attributes?: Maybe<Layout>
-  id?: Maybe<Scalars["ID"]>
-}
-
-type LayoutEntityResponse = {
-  data?: Maybe<LayoutEntity>
-}
-
-type LayoutEntityResponseCollection = {
-  data: Array<LayoutEntity>
-  meta: ResponseCollectionMeta
-}
-
-type LayoutFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<LayoutFiltersInput>>>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  headerMenu?: InputMaybe<ComponentUiLinkFiltersInput>
-  not?: InputMaybe<LayoutFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<LayoutFiltersInput>>>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-}
-
-type LayoutInput = {
-  headerMenu?: InputMaybe<Array<InputMaybe<ComponentUiLinkInput>>>
-}
-
-type LayoutRelationResponseCollection = {
-  data: Array<LayoutEntity>
-}
+  and?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  contains?: InputMaybe<Scalars['JSON']['input']>;
+  containsi?: InputMaybe<Scalars['JSON']['input']>;
+  endsWith?: InputMaybe<Scalars['JSON']['input']>;
+  eq?: InputMaybe<Scalars['JSON']['input']>;
+  eqi?: InputMaybe<Scalars['JSON']['input']>;
+  gt?: InputMaybe<Scalars['JSON']['input']>;
+  gte?: InputMaybe<Scalars['JSON']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  lt?: InputMaybe<Scalars['JSON']['input']>;
+  lte?: InputMaybe<Scalars['JSON']['input']>;
+  ne?: InputMaybe<Scalars['JSON']['input']>;
+  nei?: InputMaybe<Scalars['JSON']['input']>;
+  not?: InputMaybe<JsonFilterInput>;
+  notContains?: InputMaybe<Scalars['JSON']['input']>;
+  notContainsi?: InputMaybe<Scalars['JSON']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  startsWith?: InputMaybe<Scalars['JSON']['input']>;
+};
 
 type LongFilterInput = {
-  and?: InputMaybe<Array<InputMaybe<Scalars["Long"]>>>
-  between?: InputMaybe<Array<InputMaybe<Scalars["Long"]>>>
-  contains?: InputMaybe<Scalars["Long"]>
-  containsi?: InputMaybe<Scalars["Long"]>
-  endsWith?: InputMaybe<Scalars["Long"]>
-  eq?: InputMaybe<Scalars["Long"]>
-  eqi?: InputMaybe<Scalars["Long"]>
-  gt?: InputMaybe<Scalars["Long"]>
-  gte?: InputMaybe<Scalars["Long"]>
-  in?: InputMaybe<Array<InputMaybe<Scalars["Long"]>>>
-  lt?: InputMaybe<Scalars["Long"]>
-  lte?: InputMaybe<Scalars["Long"]>
-  ne?: InputMaybe<Scalars["Long"]>
-  not?: InputMaybe<LongFilterInput>
-  notContains?: InputMaybe<Scalars["Long"]>
-  notContainsi?: InputMaybe<Scalars["Long"]>
-  notIn?: InputMaybe<Array<InputMaybe<Scalars["Long"]>>>
-  notNull?: InputMaybe<Scalars["Boolean"]>
-  null?: InputMaybe<Scalars["Boolean"]>
-  or?: InputMaybe<Array<InputMaybe<Scalars["Long"]>>>
-  startsWith?: InputMaybe<Scalars["Long"]>
-}
+  and?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  contains?: InputMaybe<Scalars['Long']['input']>;
+  containsi?: InputMaybe<Scalars['Long']['input']>;
+  endsWith?: InputMaybe<Scalars['Long']['input']>;
+  eq?: InputMaybe<Scalars['Long']['input']>;
+  eqi?: InputMaybe<Scalars['Long']['input']>;
+  gt?: InputMaybe<Scalars['Long']['input']>;
+  gte?: InputMaybe<Scalars['Long']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  lt?: InputMaybe<Scalars['Long']['input']>;
+  lte?: InputMaybe<Scalars['Long']['input']>;
+  ne?: InputMaybe<Scalars['Long']['input']>;
+  nei?: InputMaybe<Scalars['Long']['input']>;
+  not?: InputMaybe<LongFilterInput>;
+  notContains?: InputMaybe<Scalars['Long']['input']>;
+  notContainsi?: InputMaybe<Scalars['Long']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  startsWith?: InputMaybe<Scalars['Long']['input']>;
+};
 
 type Mutation = {
   /** Change user password. Confirm with the current password. */
-  changePassword?: Maybe<UsersPermissionsLoginPayload>
-  createReactIconsIconlibrary?: Maybe<ReactIconsIconlibraryEntityResponse>
-  createUploadFile?: Maybe<UploadFileEntityResponse>
+  changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
+  createContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
+  createStaticPage?: Maybe<StaticPageEntityResponse>;
+  createUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Create a new role */
-  createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>
+  createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
-  createUsersPermissionsUser: UsersPermissionsUserEntityResponse
-  deleteHome?: Maybe<HomeEntityResponse>
-  deleteLayout?: Maybe<LayoutEntityResponse>
-  deleteReactIconsIconlibrary?: Maybe<ReactIconsIconlibraryEntityResponse>
-  deleteUploadFile?: Maybe<UploadFileEntityResponse>
+  createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
+  deleteContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
+  deleteStaticPage?: Maybe<StaticPageEntityResponse>;
+  deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Delete an existing role */
-  deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>
+  deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
   /** Delete an existing user */
-  deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse
+  deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   /** Confirm an email users email address */
-  emailConfirmation?: Maybe<UsersPermissionsLoginPayload>
+  emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
   /** Request a reset password token */
-  forgotPassword?: Maybe<UsersPermissionsPasswordPayload>
-  login: UsersPermissionsLoginPayload
-  multipleUpload: Array<Maybe<UploadFileEntityResponse>>
+  forgotPassword?: Maybe<UsersPermissionsPasswordPayload>;
+  login: UsersPermissionsLoginPayload;
+  multipleUpload: Array<Maybe<UploadFileEntityResponse>>;
   /** Register a user */
-  register: UsersPermissionsLoginPayload
-  removeFile?: Maybe<UploadFileEntityResponse>
+  register: UsersPermissionsLoginPayload;
+  removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
-  resetPassword?: Maybe<UsersPermissionsLoginPayload>
-  updateFileInfo: UploadFileEntityResponse
-  updateHome?: Maybe<HomeEntityResponse>
-  updateLayout?: Maybe<LayoutEntityResponse>
-  updateReactIconsIconlibrary?: Maybe<ReactIconsIconlibraryEntityResponse>
-  updateUploadFile?: Maybe<UploadFileEntityResponse>
+  resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
+  updateContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
+  updateFileInfo: UploadFileEntityResponse;
+  updateStaticPage?: Maybe<StaticPageEntityResponse>;
+  updateUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Update an existing role */
-  updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>
+  updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
   /** Update an existing user */
-  updateUsersPermissionsUser: UsersPermissionsUserEntityResponse
-  upload: UploadFileEntityResponse
-}
+  updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  upload: UploadFileEntityResponse;
+};
+
 
 type MutationChangePasswordArgs = {
-  currentPassword: Scalars["String"]
-  password: Scalars["String"]
-  passwordConfirmation: Scalars["String"]
-}
+  currentPassword: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  passwordConfirmation: Scalars['String']['input'];
+};
 
-type MutationCreateReactIconsIconlibraryArgs = {
-  data: ReactIconsIconlibraryInput
-}
+
+type MutationCreateContentReleasesReleaseArgs = {
+  data: ContentReleasesReleaseInput;
+};
+
+
+type MutationCreateContentReleasesReleaseActionArgs = {
+  data: ContentReleasesReleaseActionInput;
+};
+
+
+type MutationCreateStaticPageArgs = {
+  data: StaticPageInput;
+};
+
 
 type MutationCreateUploadFileArgs = {
-  data: UploadFileInput
-}
+  data: UploadFileInput;
+};
+
 
 type MutationCreateUsersPermissionsRoleArgs = {
-  data: UsersPermissionsRoleInput
-}
+  data: UsersPermissionsRoleInput;
+};
+
 
 type MutationCreateUsersPermissionsUserArgs = {
-  data: UsersPermissionsUserInput
-}
+  data: UsersPermissionsUserInput;
+};
 
-type MutationDeleteReactIconsIconlibraryArgs = {
-  id: Scalars["ID"]
-}
+
+type MutationDeleteContentReleasesReleaseArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+type MutationDeleteContentReleasesReleaseActionArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+type MutationDeleteStaticPageArgs = {
+  id: Scalars['ID']['input'];
+};
+
 
 type MutationDeleteUploadFileArgs = {
-  id: Scalars["ID"]
-}
+  id: Scalars['ID']['input'];
+};
+
 
 type MutationDeleteUsersPermissionsRoleArgs = {
-  id: Scalars["ID"]
-}
+  id: Scalars['ID']['input'];
+};
+
 
 type MutationDeleteUsersPermissionsUserArgs = {
-  id: Scalars["ID"]
-}
+  id: Scalars['ID']['input'];
+};
+
 
 type MutationEmailConfirmationArgs = {
-  confirmation: Scalars["String"]
-}
+  confirmation: Scalars['String']['input'];
+};
+
 
 type MutationForgotPasswordArgs = {
-  email: Scalars["String"]
-}
+  email: Scalars['String']['input'];
+};
+
 
 type MutationLoginArgs = {
-  input: UsersPermissionsLoginInput
-}
+  input: UsersPermissionsLoginInput;
+};
+
 
 type MutationMultipleUploadArgs = {
-  field?: InputMaybe<Scalars["String"]>
-  files: Array<InputMaybe<Scalars["Upload"]>> | InputMaybe<Scalars["Upload"]>
-  ref?: InputMaybe<Scalars["String"]>
-  refId?: InputMaybe<Scalars["ID"]>
-}
+  field?: InputMaybe<Scalars['String']['input']>;
+  files: Array<InputMaybe<Scalars['Upload']['input']>>;
+  ref?: InputMaybe<Scalars['String']['input']>;
+  refId?: InputMaybe<Scalars['ID']['input']>;
+};
+
 
 type MutationRegisterArgs = {
-  input: UsersPermissionsRegisterInput
-}
+  input: UsersPermissionsRegisterInput;
+};
+
 
 type MutationRemoveFileArgs = {
-  id: Scalars["ID"]
-}
+  id: Scalars['ID']['input'];
+};
+
 
 type MutationResetPasswordArgs = {
-  code: Scalars["String"]
-  password: Scalars["String"]
-  passwordConfirmation: Scalars["String"]
-}
+  code: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  passwordConfirmation: Scalars['String']['input'];
+};
+
+
+type MutationUpdateContentReleasesReleaseArgs = {
+  data: ContentReleasesReleaseInput;
+  id: Scalars['ID']['input'];
+};
+
+
+type MutationUpdateContentReleasesReleaseActionArgs = {
+  data: ContentReleasesReleaseActionInput;
+  id: Scalars['ID']['input'];
+};
+
 
 type MutationUpdateFileInfoArgs = {
-  id: Scalars["ID"]
-  info?: InputMaybe<FileInfoInput>
-}
+  id: Scalars['ID']['input'];
+  info?: InputMaybe<FileInfoInput>;
+};
 
-type MutationUpdateHomeArgs = {
-  data: HomeInput
-}
 
-type MutationUpdateLayoutArgs = {
-  data: LayoutInput
-}
+type MutationUpdateStaticPageArgs = {
+  data: StaticPageInput;
+  id: Scalars['ID']['input'];
+};
 
-type MutationUpdateReactIconsIconlibraryArgs = {
-  data: ReactIconsIconlibraryInput
-  id: Scalars["ID"]
-}
 
 type MutationUpdateUploadFileArgs = {
-  data: UploadFileInput
-  id: Scalars["ID"]
-}
+  data: UploadFileInput;
+  id: Scalars['ID']['input'];
+};
+
 
 type MutationUpdateUsersPermissionsRoleArgs = {
-  data: UsersPermissionsRoleInput
-  id: Scalars["ID"]
-}
+  data: UsersPermissionsRoleInput;
+  id: Scalars['ID']['input'];
+};
+
 
 type MutationUpdateUsersPermissionsUserArgs = {
-  data: UsersPermissionsUserInput
-  id: Scalars["ID"]
-}
+  data: UsersPermissionsUserInput;
+  id: Scalars['ID']['input'];
+};
+
 
 type MutationUploadArgs = {
-  field?: InputMaybe<Scalars["String"]>
-  file: Scalars["Upload"]
-  info?: InputMaybe<FileInfoInput>
-  ref?: InputMaybe<Scalars["String"]>
-  refId?: InputMaybe<Scalars["ID"]>
-}
+  field?: InputMaybe<Scalars['String']['input']>;
+  file: Scalars['Upload']['input'];
+  info?: InputMaybe<FileInfoInput>;
+  ref?: InputMaybe<Scalars['String']['input']>;
+  refId?: InputMaybe<Scalars['ID']['input']>;
+};
 
 type Pagination = {
-  page: Scalars["Int"]
-  pageCount: Scalars["Int"]
-  pageSize: Scalars["Int"]
-  total: Scalars["Int"]
-}
+  page: Scalars['Int']['output'];
+  pageCount: Scalars['Int']['output'];
+  pageSize: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
 
 type PaginationArg = {
-  limit?: InputMaybe<Scalars["Int"]>
-  page?: InputMaybe<Scalars["Int"]>
-  pageSize?: InputMaybe<Scalars["Int"]>
-  start?: InputMaybe<Scalars["Int"]>
-}
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageSize?: InputMaybe<Scalars['Int']['input']>;
+  start?: InputMaybe<Scalars['Int']['input']>;
+};
 
-type PublicationState = "LIVE" | "PREVIEW"
+type PublicationState =
+  | 'LIVE'
+  | 'PREVIEW';
 
 type Query = {
-  home?: Maybe<HomeEntityResponse>
-  layout?: Maybe<LayoutEntityResponse>
-  me?: Maybe<UsersPermissionsUser>
-  reactIconsIconlibraries?: Maybe<ReactIconsIconlibraryEntityResponseCollection>
-  reactIconsIconlibrary?: Maybe<ReactIconsIconlibraryEntityResponse>
-  uploadFile?: Maybe<UploadFileEntityResponse>
-  uploadFiles?: Maybe<UploadFileEntityResponseCollection>
-  usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>
-  usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>
-  usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>
-  usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>
-}
+  contentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
+  contentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
+  contentReleasesReleaseActions?: Maybe<ContentReleasesReleaseActionEntityResponseCollection>;
+  contentReleasesReleases?: Maybe<ContentReleasesReleaseEntityResponseCollection>;
+  me?: Maybe<UsersPermissionsUser>;
+  staticPage?: Maybe<StaticPageEntityResponse>;
+  staticPages?: Maybe<StaticPageEntityResponseCollection>;
+  uploadFile?: Maybe<UploadFileEntityResponse>;
+  uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
+  usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
+  usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
+  usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
+  usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
 
-type QueryReactIconsIconlibrariesArgs = {
-  filters?: InputMaybe<ReactIconsIconlibraryFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>>
-}
 
-type QueryReactIconsIconlibraryArgs = {
-  id?: InputMaybe<Scalars["ID"]>
-}
+type QueryContentReleasesReleaseArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+type QueryContentReleasesReleaseActionArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+type QueryContentReleasesReleaseActionsArgs = {
+  filters?: InputMaybe<ContentReleasesReleaseActionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+type QueryContentReleasesReleasesArgs = {
+  filters?: InputMaybe<ContentReleasesReleaseFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+type QueryStaticPageArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+type QueryStaticPagesArgs = {
+  filters?: InputMaybe<StaticPageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 
 type QueryUploadFileArgs = {
-  id?: InputMaybe<Scalars["ID"]>
-}
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 
 type QueryUploadFilesArgs = {
-  filters?: InputMaybe<UploadFileFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>>
-}
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 
 type QueryUsersPermissionsRoleArgs = {
-  id?: InputMaybe<Scalars["ID"]>
-}
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 
 type QueryUsersPermissionsRolesArgs = {
-  filters?: InputMaybe<UsersPermissionsRoleFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>>
-}
+  filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 
 type QueryUsersPermissionsUserArgs = {
-  id?: InputMaybe<Scalars["ID"]>
-}
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 
 type QueryUsersPermissionsUsersArgs = {
-  filters?: InputMaybe<UsersPermissionsUserFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>>
-}
-
-type ReactIconsIconlibrary = {
-  abbreviation: Scalars["String"]
-  createdAt?: Maybe<Scalars["DateTime"]>
-  isEnabled?: Maybe<Scalars["Boolean"]>
-  name: Scalars["String"]
-  updatedAt?: Maybe<Scalars["DateTime"]>
-}
-
-type ReactIconsIconlibraryEntity = {
-  attributes?: Maybe<ReactIconsIconlibrary>
-  id?: Maybe<Scalars["ID"]>
-}
-
-type ReactIconsIconlibraryEntityResponse = {
-  data?: Maybe<ReactIconsIconlibraryEntity>
-}
-
-type ReactIconsIconlibraryEntityResponseCollection = {
-  data: Array<ReactIconsIconlibraryEntity>
-  meta: ResponseCollectionMeta
-}
-
-type ReactIconsIconlibraryFiltersInput = {
-  abbreviation?: InputMaybe<StringFilterInput>
-  and?: InputMaybe<Array<InputMaybe<ReactIconsIconlibraryFiltersInput>>>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  id?: InputMaybe<IdFilterInput>
-  isEnabled?: InputMaybe<BooleanFilterInput>
-  name?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<ReactIconsIconlibraryFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ReactIconsIconlibraryFiltersInput>>>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-}
-
-type ReactIconsIconlibraryInput = {
-  abbreviation?: InputMaybe<Scalars["String"]>
-  isEnabled?: InputMaybe<Scalars["Boolean"]>
-  name?: InputMaybe<Scalars["String"]>
-}
-
-type ReactIconsIconlibraryRelationResponseCollection = {
-  data: Array<ReactIconsIconlibraryEntity>
-}
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
 
 type ResponseCollectionMeta = {
-  pagination: Pagination
-}
+  pagination: Pagination;
+};
+
+type StaticPage = {
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+type StaticPageEntity = {
+  attributes?: Maybe<StaticPage>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+type StaticPageEntityResponse = {
+  data?: Maybe<StaticPageEntity>;
+};
+
+type StaticPageEntityResponseCollection = {
+  data: Array<StaticPageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+type StaticPageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<StaticPageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<StaticPageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<StaticPageFiltersInput>>>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+type StaticPageInput = {
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+type StaticPageRelationResponseCollection = {
+  data: Array<StaticPageEntity>;
+};
 
 type StringFilterInput = {
-  and?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>
-  between?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>
-  contains?: InputMaybe<Scalars["String"]>
-  containsi?: InputMaybe<Scalars["String"]>
-  endsWith?: InputMaybe<Scalars["String"]>
-  eq?: InputMaybe<Scalars["String"]>
-  eqi?: InputMaybe<Scalars["String"]>
-  gt?: InputMaybe<Scalars["String"]>
-  gte?: InputMaybe<Scalars["String"]>
-  in?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>
-  lt?: InputMaybe<Scalars["String"]>
-  lte?: InputMaybe<Scalars["String"]>
-  ne?: InputMaybe<Scalars["String"]>
-  not?: InputMaybe<StringFilterInput>
-  notContains?: InputMaybe<Scalars["String"]>
-  notContainsi?: InputMaybe<Scalars["String"]>
-  notIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>
-  notNull?: InputMaybe<Scalars["Boolean"]>
-  null?: InputMaybe<Scalars["Boolean"]>
-  or?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>
-  startsWith?: InputMaybe<Scalars["String"]>
-}
+  and?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  containsi?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  eqi?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  nei?: InputMaybe<Scalars['String']['input']>;
+  not?: InputMaybe<StringFilterInput>;
+  notContains?: InputMaybe<Scalars['String']['input']>;
+  notContainsi?: InputMaybe<Scalars['String']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+};
 
 type TimeFilterInput = {
-  and?: InputMaybe<Array<InputMaybe<Scalars["Time"]>>>
-  between?: InputMaybe<Array<InputMaybe<Scalars["Time"]>>>
-  contains?: InputMaybe<Scalars["Time"]>
-  containsi?: InputMaybe<Scalars["Time"]>
-  endsWith?: InputMaybe<Scalars["Time"]>
-  eq?: InputMaybe<Scalars["Time"]>
-  eqi?: InputMaybe<Scalars["Time"]>
-  gt?: InputMaybe<Scalars["Time"]>
-  gte?: InputMaybe<Scalars["Time"]>
-  in?: InputMaybe<Array<InputMaybe<Scalars["Time"]>>>
-  lt?: InputMaybe<Scalars["Time"]>
-  lte?: InputMaybe<Scalars["Time"]>
-  ne?: InputMaybe<Scalars["Time"]>
-  not?: InputMaybe<TimeFilterInput>
-  notContains?: InputMaybe<Scalars["Time"]>
-  notContainsi?: InputMaybe<Scalars["Time"]>
-  notIn?: InputMaybe<Array<InputMaybe<Scalars["Time"]>>>
-  notNull?: InputMaybe<Scalars["Boolean"]>
-  null?: InputMaybe<Scalars["Boolean"]>
-  or?: InputMaybe<Array<InputMaybe<Scalars["Time"]>>>
-  startsWith?: InputMaybe<Scalars["Time"]>
-}
+  and?: InputMaybe<Array<InputMaybe<Scalars['Time']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Time']['input']>>>;
+  contains?: InputMaybe<Scalars['Time']['input']>;
+  containsi?: InputMaybe<Scalars['Time']['input']>;
+  endsWith?: InputMaybe<Scalars['Time']['input']>;
+  eq?: InputMaybe<Scalars['Time']['input']>;
+  eqi?: InputMaybe<Scalars['Time']['input']>;
+  gt?: InputMaybe<Scalars['Time']['input']>;
+  gte?: InputMaybe<Scalars['Time']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Time']['input']>>>;
+  lt?: InputMaybe<Scalars['Time']['input']>;
+  lte?: InputMaybe<Scalars['Time']['input']>;
+  ne?: InputMaybe<Scalars['Time']['input']>;
+  nei?: InputMaybe<Scalars['Time']['input']>;
+  not?: InputMaybe<TimeFilterInput>;
+  notContains?: InputMaybe<Scalars['Time']['input']>;
+  notContainsi?: InputMaybe<Scalars['Time']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Time']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Time']['input']>>>;
+  startsWith?: InputMaybe<Scalars['Time']['input']>;
+};
 
 type UploadFile = {
-  alternativeText?: Maybe<Scalars["String"]>
-  blurhash?: Maybe<Scalars["String"]>
-  caption?: Maybe<Scalars["String"]>
-  createdAt?: Maybe<Scalars["DateTime"]>
-  ext?: Maybe<Scalars["String"]>
-  formats?: Maybe<Scalars["JSON"]>
-  hash: Scalars["String"]
-  height?: Maybe<Scalars["Int"]>
-  mime: Scalars["String"]
-  name: Scalars["String"]
-  previewUrl?: Maybe<Scalars["String"]>
-  provider: Scalars["String"]
-  provider_metadata?: Maybe<Scalars["JSON"]>
-  related?: Maybe<Array<Maybe<GenericMorph>>>
-  size: Scalars["Float"]
-  updatedAt?: Maybe<Scalars["DateTime"]>
-  url: Scalars["String"]
-  width?: Maybe<Scalars["Int"]>
-}
+  alternativeText?: Maybe<Scalars['String']['output']>;
+  caption?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  ext?: Maybe<Scalars['String']['output']>;
+  formats?: Maybe<Scalars['JSON']['output']>;
+  hash: Scalars['String']['output'];
+  height?: Maybe<Scalars['Int']['output']>;
+  mime: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  previewUrl?: Maybe<Scalars['String']['output']>;
+  provider: Scalars['String']['output'];
+  provider_metadata?: Maybe<Scalars['JSON']['output']>;
+  related?: Maybe<Array<Maybe<GenericMorph>>>;
+  size: Scalars['Float']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  url: Scalars['String']['output'];
+  width?: Maybe<Scalars['Int']['output']>;
+};
 
 type UploadFileEntity = {
-  attributes?: Maybe<UploadFile>
-  id?: Maybe<Scalars["ID"]>
-}
+  attributes?: Maybe<UploadFile>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
 
 type UploadFileEntityResponse = {
-  data?: Maybe<UploadFileEntity>
-}
+  data?: Maybe<UploadFileEntity>;
+};
 
 type UploadFileEntityResponseCollection = {
-  data: Array<UploadFileEntity>
-  meta: ResponseCollectionMeta
-}
+  data: Array<UploadFileEntity>;
+  meta: ResponseCollectionMeta;
+};
 
 type UploadFileFiltersInput = {
-  alternativeText?: InputMaybe<StringFilterInput>
-  and?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>
-  blurhash?: InputMaybe<StringFilterInput>
-  caption?: InputMaybe<StringFilterInput>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  ext?: InputMaybe<StringFilterInput>
-  folder?: InputMaybe<UploadFolderFiltersInput>
-  folderPath?: InputMaybe<StringFilterInput>
-  formats?: InputMaybe<JsonFilterInput>
-  hash?: InputMaybe<StringFilterInput>
-  height?: InputMaybe<IntFilterInput>
-  id?: InputMaybe<IdFilterInput>
-  mime?: InputMaybe<StringFilterInput>
-  name?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<UploadFileFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>
-  previewUrl?: InputMaybe<StringFilterInput>
-  provider?: InputMaybe<StringFilterInput>
-  provider_metadata?: InputMaybe<JsonFilterInput>
-  size?: InputMaybe<FloatFilterInput>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-  url?: InputMaybe<StringFilterInput>
-  width?: InputMaybe<IntFilterInput>
-}
+  alternativeText?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>;
+  caption?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  ext?: InputMaybe<StringFilterInput>;
+  folder?: InputMaybe<UploadFolderFiltersInput>;
+  folderPath?: InputMaybe<StringFilterInput>;
+  formats?: InputMaybe<JsonFilterInput>;
+  hash?: InputMaybe<StringFilterInput>;
+  height?: InputMaybe<IntFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  mime?: InputMaybe<StringFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UploadFileFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>;
+  previewUrl?: InputMaybe<StringFilterInput>;
+  provider?: InputMaybe<StringFilterInput>;
+  provider_metadata?: InputMaybe<JsonFilterInput>;
+  size?: InputMaybe<FloatFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+  width?: InputMaybe<IntFilterInput>;
+};
 
 type UploadFileInput = {
-  alternativeText?: InputMaybe<Scalars["String"]>
-  blurhash?: InputMaybe<Scalars["String"]>
-  caption?: InputMaybe<Scalars["String"]>
-  ext?: InputMaybe<Scalars["String"]>
-  folder?: InputMaybe<Scalars["ID"]>
-  folderPath?: InputMaybe<Scalars["String"]>
-  formats?: InputMaybe<Scalars["JSON"]>
-  hash?: InputMaybe<Scalars["String"]>
-  height?: InputMaybe<Scalars["Int"]>
-  mime?: InputMaybe<Scalars["String"]>
-  name?: InputMaybe<Scalars["String"]>
-  previewUrl?: InputMaybe<Scalars["String"]>
-  provider?: InputMaybe<Scalars["String"]>
-  provider_metadata?: InputMaybe<Scalars["JSON"]>
-  size?: InputMaybe<Scalars["Float"]>
-  url?: InputMaybe<Scalars["String"]>
-  width?: InputMaybe<Scalars["Int"]>
-}
+  alternativeText?: InputMaybe<Scalars['String']['input']>;
+  caption?: InputMaybe<Scalars['String']['input']>;
+  ext?: InputMaybe<Scalars['String']['input']>;
+  folder?: InputMaybe<Scalars['ID']['input']>;
+  folderPath?: InputMaybe<Scalars['String']['input']>;
+  formats?: InputMaybe<Scalars['JSON']['input']>;
+  hash?: InputMaybe<Scalars['String']['input']>;
+  height?: InputMaybe<Scalars['Int']['input']>;
+  mime?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  previewUrl?: InputMaybe<Scalars['String']['input']>;
+  provider?: InputMaybe<Scalars['String']['input']>;
+  provider_metadata?: InputMaybe<Scalars['JSON']['input']>;
+  size?: InputMaybe<Scalars['Float']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  width?: InputMaybe<Scalars['Int']['input']>;
+};
 
 type UploadFileRelationResponseCollection = {
-  data: Array<UploadFileEntity>
-}
+  data: Array<UploadFileEntity>;
+};
 
 type UploadFolder = {
-  children?: Maybe<UploadFolderRelationResponseCollection>
-  createdAt?: Maybe<Scalars["DateTime"]>
-  files?: Maybe<UploadFileRelationResponseCollection>
-  name: Scalars["String"]
-  parent?: Maybe<UploadFolderEntityResponse>
-  path: Scalars["String"]
-  pathId: Scalars["Int"]
-  updatedAt?: Maybe<Scalars["DateTime"]>
-}
+  children?: Maybe<UploadFolderRelationResponseCollection>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  files?: Maybe<UploadFileRelationResponseCollection>;
+  name: Scalars['String']['output'];
+  parent?: Maybe<UploadFolderEntityResponse>;
+  path: Scalars['String']['output'];
+  pathId: Scalars['Int']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
 
 type UploadFolderChildrenArgs = {
-  filters?: InputMaybe<UploadFolderFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>>
-}
+  filters?: InputMaybe<UploadFolderFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 
 type UploadFolderFilesArgs = {
-  filters?: InputMaybe<UploadFileFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>>
-}
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
 
 type UploadFolderEntity = {
-  attributes?: Maybe<UploadFolder>
-  id?: Maybe<Scalars["ID"]>
-}
+  attributes?: Maybe<UploadFolder>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
 
 type UploadFolderEntityResponse = {
-  data?: Maybe<UploadFolderEntity>
-}
+  data?: Maybe<UploadFolderEntity>;
+};
 
 type UploadFolderEntityResponseCollection = {
-  data: Array<UploadFolderEntity>
-  meta: ResponseCollectionMeta
-}
+  data: Array<UploadFolderEntity>;
+  meta: ResponseCollectionMeta;
+};
 
 type UploadFolderFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>
-  children?: InputMaybe<UploadFolderFiltersInput>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  files?: InputMaybe<UploadFileFiltersInput>
-  id?: InputMaybe<IdFilterInput>
-  name?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<UploadFolderFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>
-  parent?: InputMaybe<UploadFolderFiltersInput>
-  path?: InputMaybe<StringFilterInput>
-  pathId?: InputMaybe<IntFilterInput>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-}
+  and?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  children?: InputMaybe<UploadFolderFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  files?: InputMaybe<UploadFileFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UploadFolderFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  parent?: InputMaybe<UploadFolderFiltersInput>;
+  path?: InputMaybe<StringFilterInput>;
+  pathId?: InputMaybe<IntFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
 
 type UploadFolderInput = {
-  children?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>
-  files?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>
-  name?: InputMaybe<Scalars["String"]>
-  parent?: InputMaybe<Scalars["ID"]>
-  path?: InputMaybe<Scalars["String"]>
-  pathId?: InputMaybe<Scalars["Int"]>
-}
+  children?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  files?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  path?: InputMaybe<Scalars['String']['input']>;
+  pathId?: InputMaybe<Scalars['Int']['input']>;
+};
 
 type UploadFolderRelationResponseCollection = {
-  data: Array<UploadFolderEntity>
-}
+  data: Array<UploadFolderEntity>;
+};
 
 type UsersPermissionsCreateRolePayload = {
-  ok: Scalars["Boolean"]
-}
+  ok: Scalars['Boolean']['output'];
+};
 
 type UsersPermissionsDeleteRolePayload = {
-  ok: Scalars["Boolean"]
-}
+  ok: Scalars['Boolean']['output'];
+};
 
 type UsersPermissionsLoginInput = {
-  identifier: Scalars["String"]
-  password: Scalars["String"]
-  provider?: Scalars["String"]
-}
+  identifier: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  provider?: Scalars['String']['input'];
+};
 
 type UsersPermissionsLoginPayload = {
-  jwt?: Maybe<Scalars["String"]>
-  user: UsersPermissionsMe
-}
+  jwt?: Maybe<Scalars['String']['output']>;
+  user: UsersPermissionsMe;
+};
 
 type UsersPermissionsMe = {
-  blocked?: Maybe<Scalars["Boolean"]>
-  confirmed?: Maybe<Scalars["Boolean"]>
-  email?: Maybe<Scalars["String"]>
-  id: Scalars["ID"]
-  role?: Maybe<UsersPermissionsMeRole>
-  username: Scalars["String"]
-}
+  blocked?: Maybe<Scalars['Boolean']['output']>;
+  confirmed?: Maybe<Scalars['Boolean']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  role?: Maybe<UsersPermissionsMeRole>;
+  username: Scalars['String']['output'];
+};
 
 type UsersPermissionsMeRole = {
-  description?: Maybe<Scalars["String"]>
-  id: Scalars["ID"]
-  name: Scalars["String"]
-  type?: Maybe<Scalars["String"]>
-}
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  type?: Maybe<Scalars['String']['output']>;
+};
 
 type UsersPermissionsPasswordPayload = {
-  ok: Scalars["Boolean"]
-}
+  ok: Scalars['Boolean']['output'];
+};
 
 type UsersPermissionsPermission = {
-  action: Scalars["String"]
-  createdAt?: Maybe<Scalars["DateTime"]>
-  role?: Maybe<UsersPermissionsRoleEntityResponse>
-  updatedAt?: Maybe<Scalars["DateTime"]>
-}
+  action: Scalars['String']['output'];
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  role?: Maybe<UsersPermissionsRoleEntityResponse>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
 
 type UsersPermissionsPermissionEntity = {
-  attributes?: Maybe<UsersPermissionsPermission>
-  id?: Maybe<Scalars["ID"]>
-}
+  attributes?: Maybe<UsersPermissionsPermission>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
 
 type UsersPermissionsPermissionEntityResponse = {
-  data?: Maybe<UsersPermissionsPermissionEntity>
-}
+  data?: Maybe<UsersPermissionsPermissionEntity>;
+};
 
 type UsersPermissionsPermissionEntityResponseCollection = {
-  data: Array<UsersPermissionsPermissionEntity>
-  meta: ResponseCollectionMeta
-}
+  data: Array<UsersPermissionsPermissionEntity>;
+  meta: ResponseCollectionMeta;
+};
 
 type UsersPermissionsPermissionFiltersInput = {
-  action?: InputMaybe<StringFilterInput>
-  and?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  id?: InputMaybe<IdFilterInput>
-  not?: InputMaybe<UsersPermissionsPermissionFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>
-  role?: InputMaybe<UsersPermissionsRoleFiltersInput>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-}
+  action?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
+  role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
 
 type UsersPermissionsPermissionInput = {
-  action?: InputMaybe<Scalars["String"]>
-  role?: InputMaybe<Scalars["ID"]>
-}
+  action?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<Scalars['ID']['input']>;
+};
 
 type UsersPermissionsPermissionRelationResponseCollection = {
-  data: Array<UsersPermissionsPermissionEntity>
-}
+  data: Array<UsersPermissionsPermissionEntity>;
+};
 
 type UsersPermissionsRegisterInput = {
-  email: Scalars["String"]
-  password: Scalars["String"]
-  username: Scalars["String"]
-}
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  username: Scalars['String']['input'];
+};
 
 type UsersPermissionsRole = {
-  createdAt?: Maybe<Scalars["DateTime"]>
-  description?: Maybe<Scalars["String"]>
-  name: Scalars["String"]
-  permissions?: Maybe<UsersPermissionsPermissionRelationResponseCollection>
-  type?: Maybe<Scalars["String"]>
-  updatedAt?: Maybe<Scalars["DateTime"]>
-  users?: Maybe<UsersPermissionsUserRelationResponseCollection>
-}
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  permissions?: Maybe<UsersPermissionsPermissionRelationResponseCollection>;
+  type?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+};
+
 
 type UsersPermissionsRolePermissionsArgs = {
-  filters?: InputMaybe<UsersPermissionsPermissionFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>>
-}
+  filters?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 
 type UsersPermissionsRoleUsersArgs = {
-  filters?: InputMaybe<UsersPermissionsUserFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>>
-}
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
 
 type UsersPermissionsRoleEntity = {
-  attributes?: Maybe<UsersPermissionsRole>
-  id?: Maybe<Scalars["ID"]>
-}
+  attributes?: Maybe<UsersPermissionsRole>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
 
 type UsersPermissionsRoleEntityResponse = {
-  data?: Maybe<UsersPermissionsRoleEntity>
-}
+  data?: Maybe<UsersPermissionsRoleEntity>;
+};
 
 type UsersPermissionsRoleEntityResponseCollection = {
-  data: Array<UsersPermissionsRoleEntity>
-  meta: ResponseCollectionMeta
-}
+  data: Array<UsersPermissionsRoleEntity>;
+  meta: ResponseCollectionMeta;
+};
 
 type UsersPermissionsRoleFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  description?: InputMaybe<StringFilterInput>
-  id?: InputMaybe<IdFilterInput>
-  name?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<UsersPermissionsRoleFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>
-  permissions?: InputMaybe<UsersPermissionsPermissionFiltersInput>
-  type?: InputMaybe<StringFilterInput>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-  users?: InputMaybe<UsersPermissionsUserFiltersInput>
-}
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>;
+  permissions?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  users?: InputMaybe<UsersPermissionsUserFiltersInput>;
+};
 
 type UsersPermissionsRoleInput = {
-  description?: InputMaybe<Scalars["String"]>
-  name?: InputMaybe<Scalars["String"]>
-  permissions?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>
-  type?: InputMaybe<Scalars["String"]>
-  users?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>
-}
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  permissions?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  type?: InputMaybe<Scalars['String']['input']>;
+  users?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+};
 
 type UsersPermissionsRoleRelationResponseCollection = {
-  data: Array<UsersPermissionsRoleEntity>
-}
+  data: Array<UsersPermissionsRoleEntity>;
+};
 
 type UsersPermissionsUpdateRolePayload = {
-  ok: Scalars["Boolean"]
-}
+  ok: Scalars['Boolean']['output'];
+};
 
 type UsersPermissionsUser = {
-  blocked?: Maybe<Scalars["Boolean"]>
-  confirmed?: Maybe<Scalars["Boolean"]>
-  createdAt?: Maybe<Scalars["DateTime"]>
-  email: Scalars["String"]
-  id: Scalars["ID"]
-  provider?: Maybe<Scalars["String"]>
-  role?: Maybe<UsersPermissionsRoleEntityResponse>
-  updatedAt?: Maybe<Scalars["DateTime"]>
-  username: Scalars["String"]
-  uuid?: Maybe<Scalars["String"]>
-}
+  blocked?: Maybe<Scalars['Boolean']['output']>;
+  confirmed?: Maybe<Scalars['Boolean']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  email: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  provider?: Maybe<Scalars['String']['output']>;
+  role?: Maybe<UsersPermissionsRoleEntityResponse>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  username: Scalars['String']['output'];
+};
 
 type UsersPermissionsUserEntity = {
-  attributes?: Maybe<UsersPermissionsUser>
-  id?: Maybe<Scalars["ID"]>
-}
+  attributes?: Maybe<UsersPermissionsUser>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
 
 type UsersPermissionsUserEntityResponse = {
-  data?: Maybe<UsersPermissionsUserEntity>
-}
+  data?: Maybe<UsersPermissionsUserEntity>;
+};
 
 type UsersPermissionsUserEntityResponseCollection = {
-  data: Array<UsersPermissionsUserEntity>
-  meta: ResponseCollectionMeta
-}
+  data: Array<UsersPermissionsUserEntity>;
+  meta: ResponseCollectionMeta;
+};
 
 type UsersPermissionsUserFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>
-  blocked?: InputMaybe<BooleanFilterInput>
-  confirmationToken?: InputMaybe<StringFilterInput>
-  confirmed?: InputMaybe<BooleanFilterInput>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  email?: InputMaybe<StringFilterInput>
-  id?: InputMaybe<IdFilterInput>
-  not?: InputMaybe<UsersPermissionsUserFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>
-  password?: InputMaybe<StringFilterInput>
-  provider?: InputMaybe<StringFilterInput>
-  resetPasswordToken?: InputMaybe<StringFilterInput>
-  role?: InputMaybe<UsersPermissionsRoleFiltersInput>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-  username?: InputMaybe<StringFilterInput>
-  uuid?: InputMaybe<StringFilterInput>
-}
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
+  blocked?: InputMaybe<BooleanFilterInput>;
+  confirmationToken?: InputMaybe<StringFilterInput>;
+  confirmed?: InputMaybe<BooleanFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  email?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
+  password?: InputMaybe<StringFilterInput>;
+  provider?: InputMaybe<StringFilterInput>;
+  resetPasswordToken?: InputMaybe<StringFilterInput>;
+  role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  username?: InputMaybe<StringFilterInput>;
+};
 
 type UsersPermissionsUserInput = {
-  blocked?: InputMaybe<Scalars["Boolean"]>
-  confirmationToken?: InputMaybe<Scalars["String"]>
-  confirmed?: InputMaybe<Scalars["Boolean"]>
-  email?: InputMaybe<Scalars["String"]>
-  password?: InputMaybe<Scalars["String"]>
-  provider?: InputMaybe<Scalars["String"]>
-  resetPasswordToken?: InputMaybe<Scalars["String"]>
-  role?: InputMaybe<Scalars["ID"]>
-  username?: InputMaybe<Scalars["String"]>
-  uuid?: InputMaybe<Scalars["String"]>
-}
+  blocked?: InputMaybe<Scalars['Boolean']['input']>;
+  confirmationToken?: InputMaybe<Scalars['String']['input']>;
+  confirmed?: InputMaybe<Scalars['Boolean']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
+  provider?: InputMaybe<Scalars['String']['input']>;
+  resetPasswordToken?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<Scalars['ID']['input']>;
+  username?: InputMaybe<Scalars['String']['input']>;
+};
 
 type UsersPermissionsUserRelationResponseCollection = {
-  data: Array<UsersPermissionsUserEntity>
-}
+  data: Array<UsersPermissionsUserEntity>;
+};
 
-type CardFragment = {
-  id: string
-  title?: string | null | undefined
-  subtitle?: string | null | undefined
-  description?: string | null | undefined
-  media?:
-    | {
-        data?:
-          | {
-              id?: string | null | undefined
-              attributes?:
-                | { previewUrl?: string | null | undefined; alternativeText?: string | null | undefined; url: string }
-                | null
-                | undefined
-            }
-          | null
-          | undefined
-      }
-    | null
-    | undefined
-}
+type EntryFragment = { id: string, key?: string | null | undefined, value: string };
 
-type CardFragmentVariables = Exact<{ [key: string]: never }>
 
-type EntryFragment = { id: string; key?: string | null | undefined; value: string }
+type EntryFragmentVariables = Exact<{ [key: string]: never; }>;
 
-type EntryFragmentVariables = Exact<{ [key: string]: never }>
+type FileFragment = { id?: string | null | undefined, attributes?: { previewUrl?: string | null | undefined, alternativeText?: string | null | undefined, url: string } | null | undefined };
 
-type FileFragment = {
-  id?: string | null | undefined
-  attributes?:
-    | { previewUrl?: string | null | undefined; alternativeText?: string | null | undefined; url: string }
-    | null
-    | undefined
-}
 
-type FileFragmentVariables = Exact<{ [key: string]: never }>
+type FileFragmentVariables = Exact<{ [key: string]: never; }>;
 
-type HeadlineFragment = { id: string; title?: string | null | undefined; subtitle?: string | null | undefined }
+type StaticPageFragment = { slug?: string | null | undefined, title: string };
 
-type HeadlineFragmentVariables = Exact<{ [key: string]: never }>
 
-type LinkFragment = { id: string; title?: string | null | undefined; url: string; target: EnumComponentuilinkTarget }
+type StaticPageFragmentVariables = Exact<{ [key: string]: never; }>;
 
-type LinkFragmentVariables = Exact<{ [key: string]: never }>
+type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
-type ParagraphFragment = { id: string; value: string }
 
-type ParagraphFragmentVariables = Exact<{ [key: string]: never }>
+type MeQuery = { me?: { id: string } | null | undefined };
 
-type SectionFragment = {
-  id: string
-  button?:
-    | { id: string; title?: string | null | undefined; url: string; target: EnumComponentuilinkTarget }
-    | null
-    | undefined
-  heading?:
-    | {
-        id: string
-        title?: string | null | undefined
-        subtitle?: string | null | undefined
-        description?: string | null | undefined
-        media?:
-          | {
-              data?:
-                | {
-                    id?: string | null | undefined
-                    attributes?:
-                      | {
-                          previewUrl?: string | null | undefined
-                          alternativeText?: string | null | undefined
-                          url: string
-                        }
-                      | null
-                      | undefined
-                  }
-                | null
-                | undefined
-            }
-          | null
-          | undefined
-      }
-    | null
-    | undefined
-}
+type StaticPageQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
 
-type SectionFragmentVariables = Exact<{ [key: string]: never }>
 
-type TabFragment = {
-  id: string
-  name: string
-  pane: {
-    id: string
-    title?: string | null | undefined
-    subtitle?: string | null | undefined
-    description?: string | null | undefined
-    media?:
-      | {
-          data?:
-            | {
-                id?: string | null | undefined
-                attributes?:
-                  | { previewUrl?: string | null | undefined; alternativeText?: string | null | undefined; url: string }
-                  | null
-                  | undefined
-              }
-            | null
-            | undefined
-        }
-      | null
-      | undefined
-  }
-}
-
-type TabFragmentVariables = Exact<{ [key: string]: never }>
-
-type HomeQueryVariables = Exact<{ [key: string]: never }>
-
-type HomeQuery = {
-  home?:
-    | {
-        data?:
-          | {
-              attributes?:
-                | {
-                    hero?:
-                      | {
-                          id: string
-                          button?:
-                            | {
-                                id: string
-                                title?: string | null | undefined
-                                url: string
-                                target: EnumComponentuilinkTarget
-                              }
-                            | null
-                            | undefined
-                          heading?:
-                            | {
-                                id: string
-                                title?: string | null | undefined
-                                subtitle?: string | null | undefined
-                                description?: string | null | undefined
-                                media?:
-                                  | {
-                                      data?:
-                                        | {
-                                            id?: string | null | undefined
-                                            attributes?:
-                                              | {
-                                                  previewUrl?: string | null | undefined
-                                                  alternativeText?: string | null | undefined
-                                                  url: string
-                                                }
-                                              | null
-                                              | undefined
-                                          }
-                                        | null
-                                        | undefined
-                                    }
-                                  | null
-                                  | undefined
-                              }
-                            | null
-                            | undefined
-                        }
-                      | null
-                      | undefined
-                  }
-                | null
-                | undefined
-            }
-          | null
-          | undefined
-      }
-    | null
-    | undefined
-}
-
-type MeQueryVariables = Exact<{ [key: string]: never }>
-
-type MeQuery = { me?: { id: string } | null | undefined }
+type StaticPageQuery = { staticPages?: { data: Array<{ attributes?: { title: string } | null | undefined }> } | null | undefined };

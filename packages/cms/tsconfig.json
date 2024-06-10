@@ -5,7 +5,7 @@
     "outDir": "dist",
     "strictNullChecks": false,
     "resolveJsonModule": true,
-    "types": ["@bn-digital/strapi-types", "@strapi/strapi"]
+    "types": ["@bn-digital/strapi-types", "@strapi/strapi", "@strapi/types"]
   },
   "include": ["./src", "config", "./src/**/*.json"],
   "exclude": [

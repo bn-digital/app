@@ -1,6 +1,0 @@
-fragment Link on ComponentUiLink {
-  id
-  title
-  url
-  target
-}

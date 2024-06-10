@@ -1,0 +1,9 @@
+query staticPage($slug: String!) {
+  staticPages(filters: { slug: { eq: $slug }}) {
+    data {
+      attributes {
+        title
+      }
+    }
+  }
+}

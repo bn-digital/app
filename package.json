@@ -12,9 +12,9 @@
     }
   ],
   "author": {
-    "name": "Vlad Volkov",
-    "email": "vlad.volkov@bndigital.co",
-    "url": "https://github.com/vladyslavvolkov"
+    "name": "BN Digital",
+    "email": "hello@bndigital.co",
+    "url": "https://github.com/bn-digital/"
   },
   "workspaces": [
     "packages/*"
@@ -27,27 +27,15 @@
       "yarn dedupe"
     ]
   },
-  "prettier": "@bn-digital/prettier-config",
   "stylelint": {
     "extends": "@bn-digital/stylelint-config"
   },
-  "eslintConfig": {
-    "extends": "@bn-digital/eslint-config",
-    "ignorePatterns": [
-      "webpack.config.ts"
-    ]
-  },
   "devDependencies": {
-    "@bn-digital/cosmiconfig": "1.2.1",
     "@bn-digital/vault-env": "1.5.6",
     "pm2": "5.3.0",
-    "typescript": "5.1.6"
+    "typescript": "5.3.3"
   },
   "scripts": {
-    "start": "npx pm2-runtime ecosystem.config.yml",
-    "start:cms": "yarn workspace @project-templates/cms run start",
-    "start:website": "yarn workspace @project-templates/website run start",
-    "build": "yarn workspaces foreach --exclude=root --parallel run build",
     "lint": "npx lint ts less",
     "fix": "npx lint ts less --fix"
   },

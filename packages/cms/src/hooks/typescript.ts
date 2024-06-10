@@ -5,7 +5,7 @@ import app from "."
 
 function generateTypeDefinitions(strapi: StrapiGlobal["strapi"]): void {
   utils.generators
-    .generateSchemasDefinitions({
+    .generate({
       strapi,
       rootDir: path.join("src", "types"),
       pwd: app.workingDir,

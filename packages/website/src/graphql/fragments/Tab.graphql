@@ -1,7 +1,0 @@
-fragment Tab on ComponentUiTab {
-  id
-  name
-  pane {
-    ...Card
-  }
-}

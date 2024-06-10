@@ -1,9 +1,0 @@
-fragment Section on ComponentUiSection {
-  id
-  button {
-    ...Link
-  }
-  heading {
-    ...Card
-  }
-}
