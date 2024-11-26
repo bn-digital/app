@@ -5101,7 +5101,7 @@ __metadata:
   dependencies:
     "@apollo/client": ^3.7.16
     "@bn-digital/vite": ^2.5.0
-    "@types/react": ^18.2.14
+    "@types/react": ^18.2.42
     "@types/react-dom": ^18.2.6
     antd: ^5.6.4
     react: ^18.2.0
@@ -8282,7 +8282,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:^18.2.14":
+"@types/react@npm:*, @types/react@npm:16 || 17 || 18":
   version: 18.2.14
   resolution: "@types/react@npm:18.2.14"
   dependencies:
@@ -8290,6 +8290,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: a6a5e8cc78f486b9020d1ad009aa6c56943c68c7c6376e0f8399e9cbcd950b7b8f5d73f00200f5379f5e58d31d57d8aed24357f301d8e86108cd438ce6c8b3dd
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^18.2.42":
+  version: 18.2.42
+  resolution: "@types/react@npm:18.2.42"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: d2019afdf48303a3a598a97cc9dd2284e3c04b369e791f6ba3c33232b7f8645daff97b093a19f8b3ce75ac8a261b47552cb4513226ab16d843eb9443b0f91844
   languageName: node
   linkType: hard
 

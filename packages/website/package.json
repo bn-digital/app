@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@bn-digital/vite": "^2.5.0",
-    "@types/react": "^18.2.14",
+    "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.6"
   }
 }
